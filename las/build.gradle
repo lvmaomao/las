@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        multiDexKeepProguard file('multiDexKeep.pro')
+        minSdkVersion 9
+        targetSdkVersion 23
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile files('libs/open_sdk_r5756_lite.jar')
+    compile files('libs/weiboSDKCore_3.1.4.jar')
+    compile files('libs/libammsdk.jar')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'io.reactivex:rxjava:1.2.3'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.2'
+}
