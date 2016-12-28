@@ -12,6 +12,7 @@ import com.qingsongchou.library.las.login.instance.QQLoginInstance;
 import com.qingsongchou.library.las.login.instance.WeiboLoginInstance;
 import com.qingsongchou.library.las.login.instance.WxLoginInstance;
 import com.qingsongchou.library.las.login.result.BaseToken;
+import com.sina.weibo.sdk.utils.LogUtil;
 
 import static com.qingsongchou.library.las.ShareLogger.INFO;
 
@@ -38,7 +39,7 @@ public class LoginUtil {
 
     private static LoginInstance mLoginInstance;
 
-    private static LoginListener mLoginListener;
+    private LoginListener mLoginListener;
 
     private static int mPlatform;
 
@@ -46,13 +47,13 @@ public class LoginUtil {
 
     static final int TYPE = 799;
 
-    public static void login(Context context, @LoginPlatform.Platform int platform,
-                             LoginListener listener) {
+    public void login(Context context, @LoginPlatform.Platform int platform,
+                      LoginListener listener) {
         login(context, platform, listener, true);
     }
 
-    public static void login(Context context, @LoginPlatform.Platform int platform,
-                             LoginListener listener, boolean fetchUserInfo) {
+    public void login(Context context, @LoginPlatform.Platform int platform,
+                      LoginListener listener, boolean fetchUserInfo) {
         mPlatform = platform;
         mLoginListener = new LoginListenerProxy(listener);
         isFetchUserInfo = fetchUserInfo;
@@ -70,6 +71,9 @@ public class LoginUtil {
             case LoginPlatform.WX:
                 mLoginInstance = new WxLoginInstance(activity, mLoginListener, isFetchUserInfo);
                 break;
+            default:
+                LogUtil.d("LoginUtil", "error platform:" + mPlatform);
+                return;
         }
         mLoginInstance.doLogin(activity, mLoginListener, isFetchUserInfo);
     }
@@ -80,7 +84,7 @@ public class LoginUtil {
         }
     }
 
-    public static void recycle() {
+    public void recycle() {
         if (mLoginInstance != null) {
             mLoginInstance.recycle();
         }
@@ -90,7 +94,7 @@ public class LoginUtil {
         isFetchUserInfo = false;
     }
 
-    private static class LoginListenerProxy extends LoginListener {
+    private class LoginListenerProxy extends LoginListener {
 
         private LoginListener mListener;
 
