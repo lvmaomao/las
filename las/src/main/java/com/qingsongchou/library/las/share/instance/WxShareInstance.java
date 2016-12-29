@@ -41,7 +41,7 @@ public class WxShareInstance implements ShareInstance {
 
     private static final int THUMB_SIZE = 144;
 
-    private static final int TARGET_SIZE = 200;
+    private static final int TARGET_SIZE = 128;
 
     public WxShareInstance(Context context, String appId) {
         mIWXAPI = WXAPIFactory.createWXAPI(context, appId, true);
