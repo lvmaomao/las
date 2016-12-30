@@ -18,9 +18,7 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask"
             android:screenOrientation="behind"
-            android:taskAffinity="me.shaohui.shareutil"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
         <activity
@@ -40,7 +38,6 @@
         <activity
             android:name="com.qingsongchou.library.las._ShareActivity"
             android:launchMode="singleTask"
-            android:taskAffinity="me.shaohui.shareutil"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
