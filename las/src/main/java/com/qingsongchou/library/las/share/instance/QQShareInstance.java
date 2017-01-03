@@ -7,10 +7,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzonePublish;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.Tencent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import com.qingsongchou.library.las.share.ImageDecoder;
 import com.qingsongchou.library.las.share.ShareImageObject;
 import com.qingsongchou.library.las.share.ShareListener;
 import com.qingsongchou.library.las.share.SharePlatform;
+
 import rx.Emitter;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -50,8 +53,8 @@ public class QQShareInstance implements ShareInstance {
 
     @Override
     public void shareMedia(final int platform, final String title, final String targetUrl,
-            final String summary, final ShareImageObject shareImageObject, final Activity activity,
-            final ShareListener listener) {
+                           final String summary, final ShareImageObject shareImageObject, final Activity activity,
+                           final ShareListener listener) {
         Observable.fromEmitter(new Action1<Emitter<String>>() {
             @Override
             public void call(Emitter<String> emitter) {
@@ -91,7 +94,7 @@ public class QQShareInstance implements ShareInstance {
 
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
-            final Activity activity, final ShareListener listener) {
+                           final Activity activity, final ShareListener listener) {
         Observable.fromEmitter(new Action1<Emitter<String>>() {
             @Override
             public void call(Emitter<String> emitter) {
@@ -130,7 +133,7 @@ public class QQShareInstance implements ShareInstance {
 
     @Override
     public void handleResult(Intent data) {
-        Tencent.handleResultData(data, ShareUtil.mShareListener);
+        Tencent.handleResultData(data, ShareUtil.getInstance().mShareListener);
     }
 
     @Override
@@ -158,7 +161,7 @@ public class QQShareInstance implements ShareInstance {
     }
 
     private void shareToQQForMedia(String title, String summary, String targetUrl, String thumbUrl,
-            Activity activity, ShareListener listener) {
+                                   Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(QQShare.SHARE_TO_QQ_TITLE, title);
@@ -184,7 +187,7 @@ public class QQShareInstance implements ShareInstance {
     }
 
     private void shareToQZoneForMedia(String title, String targetUrl, String summary,
-            String imageUrl, Activity activity, ShareListener listener) {
+                                      String imageUrl, Activity activity, ShareListener listener) {
         final Bundle params = new Bundle();
         final ArrayList<String> image = new ArrayList<>();
         image.add(imageUrl);

@@ -46,8 +46,8 @@ public class _ShareActivity extends Activity {
             LoginUtil.getInstance().action(this);
         } else {
             // handle 微信回调
-            LoginUtil.handleResult(-1, -1, getIntent());
-            ShareUtil.handleResult(getIntent());
+            LoginUtil.getInstance().handleResult(-1, -1, getIntent());
+            ShareUtil.getInstance().handleResult(getIntent());
             finish();
         }
     }
@@ -69,9 +69,9 @@ public class _ShareActivity extends Activity {
         ShareLogger.i(INFO.ACTIVITY_NEW_INTENT);
         // 处理回调
         if (mType == LoginUtil.TYPE) {
-            LoginUtil.handleResult(0, 0, intent);
+            LoginUtil.getInstance().handleResult(0, 0, intent);
         } else if (mType == ShareUtil.TYPE) {
-            ShareUtil.handleResult(intent);
+            ShareUtil.getInstance().handleResult(intent);
         }
         finish();
     }
@@ -82,9 +82,9 @@ public class _ShareActivity extends Activity {
         ShareLogger.i(INFO.ACTIVITY_RESULT);
         // 处理回调
         if (mType == LoginUtil.TYPE) {
-            LoginUtil.handleResult(requestCode, resultCode, data);
+            LoginUtil.getInstance().handleResult(requestCode, resultCode, data);
         } else if (mType == ShareUtil.TYPE) {
-            ShareUtil.handleResult(data);
+            ShareUtil.getInstance().handleResult(data);
         }
         finish();
     }

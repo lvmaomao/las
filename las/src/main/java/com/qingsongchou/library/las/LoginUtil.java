@@ -37,7 +37,7 @@ public class LoginUtil {
         return mInstance;
     }
 
-    private static LoginInstance mLoginInstance;
+    private LoginInstance mLoginInstance;
 
     private LoginListener mLoginListener;
 
@@ -78,7 +78,7 @@ public class LoginUtil {
         mLoginInstance.doLogin(activity, mLoginListener, isFetchUserInfo);
     }
 
-    static void handleResult(int requestCode, int resultCode, Intent data) {
+    void handleResult(int requestCode, int resultCode, Intent data) {
         if (mLoginInstance != null) {
             mLoginInstance.handleResult(requestCode, resultCode, data);
         }

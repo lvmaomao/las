@@ -58,9 +58,9 @@ public class ShareUtil {
 
     public static final int TYPE = 798;
 
-    public static ShareListener mShareListener;
+    public ShareListener mShareListener;
 
-    private static ShareInstance mShareInstance;
+    private ShareInstance mShareInstance;
 
     private final static int TYPE_IMAGE = 1;
     private final static int TYPE_TEXT = 2;
@@ -97,8 +97,8 @@ public class ShareUtil {
         }
     }
 
-    public static void shareText(Context context, @SharePlatform.Platform int platform, String text,
-                                 ShareListener listener) {
+    public void shareText(Context context, @SharePlatform.Platform int platform, String text,
+                          ShareListener listener) {
         mType = TYPE_TEXT;
         mText = text;
         mPlatform = platform;
@@ -107,8 +107,8 @@ public class ShareUtil {
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
-    public static void shareImage(Context context, @SharePlatform.Platform final int platform,
-                                  final String urlOrPath, ShareListener listener) {
+    public void shareImage(Context context, @SharePlatform.Platform final int platform,
+                           final String urlOrPath, ShareListener listener) {
         mType = TYPE_IMAGE;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(urlOrPath);
@@ -117,8 +117,8 @@ public class ShareUtil {
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
-    public static void shareImage(Context context, @SharePlatform.Platform final int platform,
-                                  final Bitmap bitmap, ShareListener listener) {
+    public void shareImage(Context context, @SharePlatform.Platform final int platform,
+                           final Bitmap bitmap, ShareListener listener) {
         mType = TYPE_IMAGE;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(bitmap);
@@ -127,8 +127,8 @@ public class ShareUtil {
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
-    public static void shareMedia(Context context, @SharePlatform.Platform int platform,
-                                  String title, String summary, String targetUrl, Bitmap thumb, ShareListener listener) {
+    public void shareMedia(Context context, @SharePlatform.Platform int platform,
+                           String title, String summary, String targetUrl, Bitmap thumb, ShareListener listener) {
         mType = TYPE_MEDIA;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(thumb);
@@ -140,9 +140,9 @@ public class ShareUtil {
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
-    public static void shareMedia(Context context, @SharePlatform.Platform int platform,
-                                  String title, String summary, String targetUrl, String thumbUrlOrPath,
-                                  ShareListener listener) {
+    public void shareMedia(Context context, @SharePlatform.Platform int platform,
+                           String title, String summary, String targetUrl, String thumbUrlOrPath,
+                           ShareListener listener) {
         mType = TYPE_MEDIA;
         mPlatform = platform;
         mShareImageObject = new ShareImageObject(thumbUrlOrPath);
@@ -154,11 +154,11 @@ public class ShareUtil {
         context.startActivity(_ShareActivity.newInstance(context, TYPE));
     }
 
-    private static ShareListener buildProxyListener(ShareListener listener) {
+    private ShareListener buildProxyListener(ShareListener listener) {
         return new ShareListenerProxy(listener);
     }
 
-    public static void handleResult(Intent data) {
+    public void handleResult(Intent data) {
         // 微博分享会同时回调onActivityResult和onNewIntent， 而且前者返回的intent为null
         if (mShareInstance != null && data != null) {
             mShareInstance.handleResult(data);
@@ -171,8 +171,8 @@ public class ShareUtil {
         }
     }
 
-    private static ShareInstance getShareInstance(@SharePlatform.Platform int platform,
-                                                  Context context) {
+    private ShareInstance getShareInstance(@SharePlatform.Platform int platform,
+                                           Context context) {
         switch (platform) {
             case SharePlatform.WX:
             case SharePlatform.WX_TIMELINE:
@@ -188,7 +188,7 @@ public class ShareUtil {
         }
     }
 
-    public static void recycle() {
+    public void recycle() {
         mTitle = null;
         mSummary = null;
         mShareListener = null;
@@ -258,7 +258,7 @@ public class ShareUtil {
         return api.isWXAppInstalled();
     }
 
-    private static class ShareListenerProxy extends ShareListener {
+    private class ShareListenerProxy extends ShareListener {
 
         private final ShareListener mShareListener;
 
@@ -269,21 +269,21 @@ public class ShareUtil {
         @Override
         public void shareSuccess() {
             ShareLogger.i(INFO.SHARE_SUCCESS);
-            ShareUtil.recycle();
+            ShareUtil.getInstance().recycle();
             mShareListener.shareSuccess();
         }
 
         @Override
         public void shareFailure(Exception e) {
             ShareLogger.i(INFO.SHARE_FAILURE);
-            ShareUtil.recycle();
+            ShareUtil.getInstance().recycle();
             mShareListener.shareFailure(e);
         }
 
         @Override
         public void shareCancel() {
             ShareLogger.i(INFO.SHARE_CANCEL);
-            ShareUtil.recycle();
+            ShareUtil.getInstance().recycle();
             mShareListener.shareCancel();
         }
 

@@ -21,6 +21,7 @@ import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.qingsongchou.library.las.share.ImageDecoder;
 import com.qingsongchou.library.las.share.SharePlatform;
+
 import rx.Emitter;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -106,7 +107,7 @@ public class WxShareInstance implements ShareInstance {
 
     @Override
     public void shareImage(final int platform, final ShareImageObject shareImageObject,
-            final Activity activity, final ShareListener listener) {
+                           final Activity activity, final ShareListener listener) {
         Observable.fromEmitter(new Action1<Emitter<Pair<Bitmap, Bitmap>>>() {
             @Override
             public void call(Emitter<Pair<Bitmap, Bitmap>> emitter) {
@@ -158,13 +159,13 @@ public class WxShareInstance implements ShareInstance {
             public void onResp(BaseResp baseResp) {
                 switch (baseResp.errCode) {
                     case BaseResp.ErrCode.ERR_OK:
-                        ShareUtil.mShareListener.shareSuccess();
+                        ShareUtil.getInstance().mShareListener.shareSuccess();
                         break;
                     case BaseResp.ErrCode.ERR_USER_CANCEL:
-                        ShareUtil.mShareListener.shareCancel();
+                        ShareUtil.getInstance().mShareListener.shareCancel();
                         break;
                     default:
-                        ShareUtil.mShareListener.shareFailure(new Exception(baseResp.errStr));
+                        ShareUtil.getInstance().mShareListener.shareFailure(new Exception(baseResp.errStr));
                 }
             }
         });

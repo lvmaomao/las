@@ -63,7 +63,7 @@ public class WeiboShareInstance implements ShareInstance {
 
     @Override
     public void shareImage(int platform, ShareImageObject shareImageObject, Activity activity,
-            ShareListener listener) {
+                           ShareListener listener) {
         shareTextOrImage(shareImageObject, null, activity, listener);
     }
 
@@ -74,16 +74,16 @@ public class WeiboShareInstance implements ShareInstance {
 
         switch (baseResponse.errCode) {
             case WBConstants.ErrorCode.ERR_OK:
-                ShareUtil.mShareListener.shareSuccess();
+                ShareUtil.getInstance().mShareListener.shareSuccess();
                 break;
             case WBConstants.ErrorCode.ERR_FAIL:
-                ShareUtil.mShareListener.shareFailure(new Exception(baseResponse.errMsg));
+                ShareUtil.getInstance().mShareListener.shareFailure(new Exception(baseResponse.errMsg));
                 break;
             case WBConstants.ErrorCode.ERR_CANCEL:
-                ShareUtil.mShareListener.shareCancel();
+                ShareUtil.getInstance().mShareListener.shareCancel();
                 break;
             default:
-                ShareUtil.mShareListener.shareFailure(new Exception(baseResponse.errMsg));
+                ShareUtil.getInstance().mShareListener.shareFailure(new Exception(baseResponse.errMsg));
         }
     }
 
@@ -98,7 +98,7 @@ public class WeiboShareInstance implements ShareInstance {
     }
 
     private void shareTextOrImage(final ShareImageObject shareImageObject, final String text,
-            final Activity activity, final ShareListener listener) {
+                                  final Activity activity, final ShareListener listener) {
 
         Observable.fromEmitter(new Action1<Emitter<Pair<String, byte[]>>>() {
             @Override
