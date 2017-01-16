@@ -31,7 +31,7 @@ public class ShareLogger {
         // for share
         public static final String HANDLE_DATA_NULL = "Handle the result, but the data is null, please check you app id";
         public static final String UNKNOWN_ERROR = "Unknown error";
-        public static final String NOT_INSTALL = "The application is not install";
+        public static final String NOT_INSTALL = "没有安装该应用";
         public static final String DEFAULT_QQ_SHARE_ERROR = "QQ share failed";
         public static final String QQ_NOT_SUPPORT_SHARE_TXT = "QQ not support share text";
         public static final String IMAGE_FETCH_ERROR = "Image fetch error";

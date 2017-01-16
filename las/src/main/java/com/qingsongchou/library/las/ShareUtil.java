@@ -76,7 +76,10 @@ public class ShareUtil {
 
     void action(Activity activity) {
         mShareInstance = getShareInstance(mPlatform, activity);
-
+        if (mShareListener == null) {
+            activity.finish();
+            return;
+        }
         if (!mShareInstance.isInstall(activity)) {
             mShareListener.shareFailure(new Exception(INFO.NOT_INSTALL));
             activity.finish();

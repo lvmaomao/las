@@ -75,6 +75,11 @@ public class LoginUtil {
                 LogUtil.d("LoginUtil", "error platform:" + mPlatform);
                 return;
         }
+        if (!mLoginInstance.isInstall(activity)) {
+            mLoginListener.loginFailure(new Exception(INFO.NOT_INSTALL));
+            activity.finish();
+            return;
+        }
         mLoginInstance.doLogin(activity, mLoginListener, isFetchUserInfo);
     }
 
