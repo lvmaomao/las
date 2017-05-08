@@ -11,20 +11,19 @@ import android.text.TextUtils;
 
 import com.qingsongchou.library.las.share.ShareImageObject;
 import com.qingsongchou.library.las.share.ShareListener;
+import com.qingsongchou.library.las.share.SharePlatform;
 import com.qingsongchou.library.las.share.instance.DefaultShareInstance;
 import com.qingsongchou.library.las.share.instance.QQShareInstance;
+import com.qingsongchou.library.las.share.instance.ShareInstance;
 import com.qingsongchou.library.las.share.instance.WeiboShareInstance;
+import com.qingsongchou.library.las.share.instance.WxShareInstance;
 import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
 import com.sina.weibo.sdk.api.share.WeiboShareSDK;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.List;
 import java.util.Locale;
-
-import com.qingsongchou.library.las.share.SharePlatform;
-import com.qingsongchou.library.las.share.instance.ShareInstance;
-import com.qingsongchou.library.las.share.instance.WxShareInstance;
 
 import static com.qingsongchou.library.las.ShareLogger.INFO;
 

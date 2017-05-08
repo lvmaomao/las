@@ -6,24 +6,26 @@ import android.content.Intent;
 
 import com.qingsongchou.library.las.ShareManager;
 import com.qingsongchou.library.las.login.LoginListener;
-import com.qingsongchou.library.las.login.result.WxToken;
-import com.tencent.mm.sdk.modelbase.BaseReq;
-import com.tencent.mm.sdk.modelbase.BaseResp;
-import com.tencent.mm.sdk.modelmsg.SendAuth;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import java.io.IOException;
-
 import com.qingsongchou.library.las.login.LoginPlatform;
 import com.qingsongchou.library.las.login.LoginResult;
 import com.qingsongchou.library.las.login.result.BaseToken;
+import com.qingsongchou.library.las.login.result.WxToken;
 import com.qingsongchou.library.las.login.result.WxUser;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.json.JSONException;
-import org.json.JSONObject;
 import rx.Emitter;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
