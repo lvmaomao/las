@@ -45,11 +45,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity-alias
-            android:name="${applicationId}.wxapi.WXEntryActivity"
-            android:exported="true"
-            android:targetActivity="com.qingsongchou.library.las._ShareActivity" />
     </application>
 
 </manifest>
